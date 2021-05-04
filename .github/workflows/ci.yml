@@ -7,8 +7,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
+        target: ["//:butteraugli", "//:butteraugli_lib"]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
-    - run: bazel build -c opt //:butteraugli
-    - run: bazel build -c opt //:butteraugli_lib
+    - run: bazel build -c opt //:butteraugli ${{ matrix.target }}
